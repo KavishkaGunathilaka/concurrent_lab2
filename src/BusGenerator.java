@@ -2,15 +2,17 @@ import java.util.Random;
 public class BusGenerator implements Runnable{
     private static double lambda;
     private static Random rand = new Random();
+    private int capacity;
 
-    public BusGenerator(double mean) {
+    public BusGenerator(double mean, int capacity) {
         BusGenerator.lambda = 1 /mean;
+        this.capacity = capacity;
     }
 
     @Override
     public void run() {
         while (true){
-            Bus bus = new Bus();
+            Bus bus = new Bus(capacity);
             Thread t = new Thread(bus);
             t.start();
             try {

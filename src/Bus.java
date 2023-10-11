@@ -1,10 +1,12 @@
 public class Bus implements Runnable{
     private static int nextBusId = 0;
     private int busId;
+    private int capacity;
 
-    public Bus() {
+    public Bus(int capacity) {
         this.busId = nextBusId;
         Bus.nextBusId++;
+        this.capacity = capacity;
     }
 
     @Override
@@ -12,7 +14,7 @@ public class Bus implements Runnable{
         try {
             Main.mutex.acquire();
             System.out.println("Bus " + this.busId + " arrived");
-            int n = Math.min( Main.waiting, 50);
+            int n = Math.min(Main.waiting, this.capacity);
             for (int i = 0; i < n; i++) {
                 Main.sem_bus.release();
                 Main.sem_boarded.acquire();

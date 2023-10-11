@@ -6,7 +6,7 @@ public class Main {
     public static int waiting = 0;
 
     public static void main(String[] args) {
-        BusGenerator busGen = new BusGenerator(20);
+        BusGenerator busGen = new BusGenerator(20, 10);
         RiderGenerator riderGen = new RiderGenerator(1);
 
         Thread t1 = new Thread(riderGen);
